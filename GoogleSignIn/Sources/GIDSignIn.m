@@ -194,6 +194,22 @@ static const NSTimeInterval kMinimumRestoredAccessTokenTimeToExpire = 600.0;
 
 - (void)signInWithConfiguration:(GIDConfiguration *)configuration
        presentingViewController:(UIViewController *)presentingViewController
+                           hint:(nullable NSString *)hint
+                         scopes:(GIDScopes*)scopes
+                       callback:(nullable GIDSignInCallback)callback {
+  GIDSignInInternalOptions *options =
+      [GIDSignInInternalOptions defaultOptionsWithConfiguration:configuration
+                                       presentingViewController:presentingViewController
+                                                      loginHint:hint
+                                                       callback:callback];
+                                                           
+  options->_scopes = scopes;
+
+  [self signInWithOptions:options];
+}
+
+- (void)signInWithConfiguration:(GIDConfiguration *)configuration
+       presentingViewController:(UIViewController *)presentingViewController
                        callback:(nullable GIDSignInCallback)callback {
   [self signInWithConfiguration:configuration
        presentingViewController:presentingViewController
