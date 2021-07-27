@@ -203,7 +203,7 @@ static const NSTimeInterval kMinimumRestoredAccessTokenTimeToExpire = 600.0;
                                                       loginHint:hint
                                                        callback:callback];
                                                            
-  options->_scopes = scopes;
+  options.scopes = scopes;
 
   [self signInWithOptions:options];
 }
